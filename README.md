@@ -1,1 +1,1 @@
-"# DiscordChatSyncBot" 
+# DiscordChatSyncBot

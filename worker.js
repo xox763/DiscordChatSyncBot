@@ -20,27 +20,27 @@ export default {
             const data = await request.json();
 
             // Simple validation for required fields
-            if (!data.title || !data.message) {
-                return new Response(JSON.stringify({ error: 'Missing title or message' }), {
+            if (!data.username || !data.content) {
+                return new Response(JSON.stringify({ error: 'Invalid message data' }), {
                     status: 400,
                     headers: getCORSHeaders('application/json'),
                 });
             }
 
             // Construct Discord Embed Payload
-            const discordPayload = {
-                username: 'Data Forwarder Bot',
-                avatar_url: 'https://i.imgur.com/4M34gB1.png',
-                embeds: [
-                    {
-                        title: data.title,
-                        description: data.message,
-                        color: 3447003, // Blue color code
-                        fields: data.fields || [],
-                        timestamp: new Date().toISOString(),
-                    },
-                ],
-            };
+            // const discordPayload = {
+            //     username: 'Chat Forwarder Bot',
+            //     embeds: [
+            //         {
+            //             title: data.title,
+            //             description: data.message,
+            //             color: 3447003, // Blue color code
+            //             fields: data.fields || [],
+            //             timestamp: new Date().toISOString(),
+            //         },
+            //     ],
+            // };
+            const discordPayload = data;
 
             // Send payload to Discord Webhook
             const discordResponse = await fetch(env.DISCORD_WEBHOOK_URL, {

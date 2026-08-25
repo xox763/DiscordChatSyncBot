@@ -20,11 +20,17 @@ export default {
             const data = await request.json();
 
             // Simple validation for required fields
-            if (!data.username || !data.content) {
+            if (data.username == null || data.content == null) {
                 return new Response(JSON.stringify({ error: 'Invalid message data' }), {
                     status: 400,
                     headers: getCORSHeaders('application/json'),
                 });
+            }
+
+            if (data.timestamp) {
+                if (Math.abs(Date.now() - data.timestamp) > 5000) {
+                    data.content = `${data.content} -#<t:${Math.floor(timestamp/1000)}:f>`;
+                }
             }
 
             // Construct Discord Embed Payload

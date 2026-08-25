@@ -1,1 +1,1 @@
-# DiscordChatSyncBot
+# HW Chat Sync for Discord

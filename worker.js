@@ -1,5 +1,3 @@
-// Environment variable 'DISCORD_WEBHOOK_URL' should be set in Cloudflare Dashboard or wrangler.toml
-
 export default {
     async fetch(request, env, ctx) {
         // Handle CORS preflight request
@@ -20,15 +18,17 @@ export default {
             const data = await request.json();
 
             // Simple validation for required fields
-            if (data.username == null || data.content == null) {
+            if (data.username == null || data.content == null || data.webhookURL == null) {
                 return new Response(JSON.stringify({ error: 'Invalid message data' }), {
                     status: 400,
                     headers: getCORSHeaders('application/json'),
                 });
             }
 
-            if (data.timestamp) {
-                if (Math.abs(Date.now() - data.timestamp) > 5000) {
+            const { userId, timestamp, webhookURL, ...discordPayload } = data;
+
+            if (timestamp) {
+                if (Math.abs(Date.now() - timestamp) > 5000) {
                     data.content = `${data.content} -#<t:${Math.floor(timestamp/1000)}:f>`;
                 }
             }
@@ -46,10 +46,9 @@ export default {
             //         },
             //     ],
             // };
-            const discordPayload = data;
 
             // Send payload to Discord Webhook
-            const discordResponse = await fetch(env.DISCORD_WEBHOOK_URL, {
+            const discordResponse = await fetch(data.webhookURL, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

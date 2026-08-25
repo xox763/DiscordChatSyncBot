@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HW Chat Sync for Discord - Legal Documents</title>
+  <style>
+    :root {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent-color: #38bdf8;
+      --border-color: #334155;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 20px;
+    }
+
+    h1 {
+      color: var(--accent-color);
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .nav-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .tab-btn {
+      background: var(--card-bg);
+      color: var(--text-muted);
+      border: 1px solid var(--border-color);
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .tab-btn.active, .tab-btn:hover {
+      color: var(--accent-color);
+      border-color: var(--accent-color);
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 30px;
+      margin-bottom: 30px;
+    }
+
+    h2 {
+      color: var(--accent-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 10px;
+      margin-top: 0;
+    }
+
+    h3 {
+      color: var(--text-main);
+      margin-top: 24px;
+    }
+
+    ul {
+      padding-left: 20px;
+      color: var(--text-muted);
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    code {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 16px;
+        background-color: #354b6d;
+        color: #bfd1da;
+        padding: 0 8px;
+        border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>HW Chat Sync for Discord</h1>
+      <p class="subtitle">Official Terms of Service & Privacy Policy</p>
+    </header>
+
+    <div class="nav-tabs">
+      <button class="tab-btn active" onclick="showTab('tos')">Terms of Service</button>
+      <button class="tab-btn" onclick="showTab('privacy')">Privacy Policy</button>
+    </div>
+
+    <!-- Terms of Service Section -->
+    <section id="tos" class="card">
+      <h2>Terms of Service</h2>
+      <p><em>Last Updated: August 2026</em></p>
+
+      <h3>1. Acceptance of Terms</h3>
+      <p>By adding, integrating, or using <code>HW Chat Sync for Discord</code> ("the Application") in your Discord server or guild environment, you agree to be bound by these Terms of Service. If you do not agree to these terms, please refrain from using the Application.</p>
+
+      <h3>2. Description of Service</h3>
+      <p><code>HW Chat Sync for Discord</code> is an unofficial, third-party utility designed to synchronize and relay in-game guild chat messages to designated Discord channels via webhooks and proxy mechanisms.</p>
+
+      <h3>3. User Conduct & Fair Use</h3>
+      <ul>
+        <li>You agree not to use the Application for sending spam, malicious content, or violating Discord's Terms of Service.</li>
+        <li>You are responsible for ensuring that the transmission of guild chat content complies with your local community guidelines.</li>
+      </ul>
+
+      <h3>4. Disclaimer & Limitation of Liability</h3>
+      <ul>
+        <li><strong>Unofficial Tool:</strong> <code>HW Chat Sync for Discord</code> is not affiliated with, maintained, authorized, endorsed, or sponsored by Nexters, Hero Wars, or Discord Inc.</li>
+        <li><strong>AS-IS Basis:</strong> The service is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, express or implied.</li>
+        <li><strong>No Liability:</strong> The developers of <code>HW Chat Sync for Discord</code> shall not be liable for any service interruptions, message delays, data loss, or in-game account actions resulting from the use of this tool.</li>
+      </ul>
+
+      <h3>5. Modifications to Service</h3>
+      <p>We reserve the right to modify, suspend, or discontinue the Application (or any part thereof) at any time with or without prior notice.</p>
+    </section>
+
+    <!-- Privacy Policy Section -->
+    <section id="privacy" class="card hidden">
+      <h2>Privacy Policy</h2>
+      <p><em>Last Updated: August 2026</em></p>
+
+      <h3>1. Information We Process</h3>
+      <p><code>HW Chat Sync for Discord</code> operates on a minimal-data principle to perform real-time chat relay services:</p>
+      <ul>
+        <li><strong>In-Game Chat Data:</strong> In-game usernames and text messages sent within the guild chat for transmission purposes.</li>
+        <li><strong>Discord Technical Identifiers:</strong> Discord Guild (Server) IDs, Channel IDs, and Webhook URLs necessary for routing messages.</li>
+      </ul>
+
+      <h3>2. How We Use Data</h3>
+      <p>All collected and transmitted data is used <strong>exclusively</strong> to relay chat messages in real-time between the game environment and your designated Discord channels. We do <strong>NOT</strong> sell, trade, or monetize your chat content or user data.</p>
+
+      <h3>3. Data Storage & Retention</h3>
+      <ul>
+        <li><strong>No Permanent Storage:</strong> Chat messages are processed in-memory for real-time queueing and forwarding. They are <strong>not permanently stored</strong> on our servers or databases.</li>
+        <li><strong>Temporary Buffers:</strong> Messages are held in temporary memory buffers (queue) only for the duration required to satisfy rate-limit throttle requirements (typically seconds) and are immediately discarded afterward.</li>
+      </ul>
+
+      <h3>4. Third-Party Infrastructure</h3>
+      <p>Message traffic may pass through third-party infrastructure (such as Cloudflare Workers or Edge Proxies) to ensure service stability, rate-limit protection, and secure routing. These services process data strictly in accordance with standard web delivery protocols.</p>
+
+      <h3>5. Contact & Inquiries</h3>
+      <p>If you have questions regarding this Privacy Policy or data handling, please reach out via our official GitHub repository issue tracker.</p>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 HW Chat Sync for Discord. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function showTab(tabName) {
+      document.getElementById('tos').classList.add('hidden');
+      document.getElementById('privacy').classList.add('hidden');
+
+      const buttons = document.querySelectorAll('.tab-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      if (tabName === 'privacy') {
+        document.getElementById('privacy').classList.remove('hidden');
+        buttons[1].classList.add('active');
+      } else {
+        document.getElementById('tos').classList.remove('hidden');
+        buttons[0].classList.add('active');
+      }
+    }
+
+    function initTabSelection() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const tabParam = urlParams.get('tab');
+
+      const hashParam = window.location.hash.replace('#', '');
+
+      const selectedTab = tabParam || hashParam;
+
+      if (selectedTab === 'privacy') {
+        showTab('privacy');
+      } else {
+        showTab('tos');
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', initTabSelection);
+    window.addEventListener('hashchange', initTabSelection);
+  </script>
+</body>
+</html>

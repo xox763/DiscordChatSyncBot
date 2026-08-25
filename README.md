@@ -1,1 +1,2 @@
 # HW Chat Sync for Discord
+**HW Chat Sync for Discord** is a lightweight, reliable chat relay bot built specifically for Hero Wars guilds and gaming communities. Bridges in-game guild chat with Discord channels, enabling multi-language communication with browser translation.

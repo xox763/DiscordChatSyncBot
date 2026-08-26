@@ -1,3 +1,11 @@
 name = "discordchatsyncbot"
-main = "worker.js"
+main = "src/index.js"
 compatibility_date = "2026-08-20"
+
+[[durable_objects.bindings]]
+name = "KV_STORE"
+class_name = "KeyValueStore"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["KeyValueStore"]

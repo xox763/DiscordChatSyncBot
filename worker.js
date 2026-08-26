@@ -29,7 +29,7 @@ export default {
 
             if (timestamp) {
                 if (Math.abs(Date.now() - timestamp) > 5000) {
-                    data.content = `${data.content} -#<t:${Math.floor(timestamp/1000)}:f>`;
+                    discordPayload.content = `${discordPayload.content} -#<t:${Math.floor(timestamp/1000)}:f>`;
                 }
             }
 
@@ -57,16 +57,16 @@ export default {
                 body: JSON.stringify(discordPayload),
             });
 
-            if (!discordResponse.ok) {
-                throw new Error(`Discord API responded with status ${discordResponse.status}`);
-            }
+            const responseBody = await discordResponse.arrayBuffer();
+            const contentType = discordResponse.headers.get('content-type') || 'application/json';
 
-            return new Response(JSON.stringify({ success: true, message: 'Message sent successfully' }), {
-                status: 200,
-                headers: getCORSHeaders('application/json'),
+            return new Response(responseBody, {
+                status: discordResponse.status,
+                statusText: discordResponse.statusText,
+                headers: getCORSHeaders(contentType),
             });
         } catch (error) {
-            return new Response(JSON.stringify({ error: 'Failed to process request', details: error.message }), {
+            return new Response(JSON.stringify({ error: 'Relay Worker Internal Error', details: error.message }), {
                 status: 500,
                 headers: getCORSHeaders('application/json'),
             });

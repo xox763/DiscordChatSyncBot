@@ -7,8 +7,8 @@ export default {
 
         // Allow only POST requests
         if (request.method !== 'POST') {
-            return new Response(JSON.stringify({ error: 'Method Not Allowed' }), {
-                status: 405,
+            return new Response(JSON.stringify({ origin: 'relay', error: 'Method Not Allowed' }), {
+                status: 405, // Method Not Allowed
                 headers: getCORSHeaders('application/json'),
             });
         }
@@ -19,8 +19,8 @@ export default {
 
             // Simple validation for required fields
             if (data.username == null || data.content == null || data.webhookURL == null) {
-                return new Response(JSON.stringify({ error: 'Invalid message data' }), {
-                    status: 400,
+                return new Response(JSON.stringify({ origin: 'relay', error: 'Invalid message data' }), {
+                    status: 400, // Bad Request
                     headers: getCORSHeaders('application/json'),
                 });
             }
@@ -29,7 +29,7 @@ export default {
 
             if (timestamp) {
                 if (Math.abs(Date.now() - timestamp) > 5000) {
-                    discordPayload.content = `${discordPayload.content} -#<t:${Math.floor(timestamp/1000)}:f>`;
+                    discordPayload.content = `${discordPayload.content} <t:${Math.floor(timestamp/1000)}:R>`;
                 }
             }
 
@@ -62,11 +62,10 @@ export default {
 
             return new Response(responseBody, {
                 status: discordResponse.status,
-                statusText: discordResponse.statusText,
                 headers: getCORSHeaders(contentType),
             });
         } catch (error) {
-            return new Response(JSON.stringify({ error: 'Relay Worker Internal Error', details: error.message }), {
+            return new Response(JSON.stringify({ origin: 'relay', error: 'Relay Worker Internal Error', details: error.message }), {
                 status: 500,
                 headers: getCORSHeaders('application/json'),
             });

@@ -51,6 +51,7 @@ export default {
             const discordResponse = await fetch(data.webhookURL, {
                 method: 'POST',
                 headers: {
+                    'Authorization': `Bot ${env.BOT_TOKEN}`,
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(discordPayload),

@@ -38,7 +38,8 @@ export async function handleRequest(request, env) {
             );
         }
 
-        const stub = env.KV_STORE.get(env.KV_STORE.idFromName(webhookURL));
+        const kvStoreName = channelId ? `#${channelId}-${webhookURL}` : webhookURL;
+        const stub = env.KV_STORE.get(env.KV_STORE.idFromName(kvStoreName));
         const lastTimeId = await stub.get('lastTimeId');
         if (lastTimeId) {
             if (timeId) {

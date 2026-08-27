@@ -63,7 +63,7 @@ export async function handleRequest(request, env) {
             }
         }
 
-        let head = channelName ? `\`${channelName}\` ` : '';
+        let head = channelName ? `\`#${channelName}\` ` : '';
         let tail = '';
         if (timeId) {
             await stub.set('lastTimeId', timeId);

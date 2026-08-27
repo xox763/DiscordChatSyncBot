@@ -26,7 +26,7 @@ export async function handleRequest(request, env) {
             });
         }
 
-        const { userId, timeId, channelId, webhookURL, ...discordPayload } = data;
+        const { userId, timeId, channelName, webhookURL, ...discordPayload } = data;
 
         if (!webhookURL.toLowerCase().startsWith(ALLOWED_PREFIX)) {
             return new Response(
@@ -38,7 +38,7 @@ export async function handleRequest(request, env) {
             );
         }
 
-        const kvStoreName = channelId ? `#${channelId}-${webhookURL}` : webhookURL;
+        const kvStoreName = channelName ? `#${channelName}-${webhookURL}` : webhookURL;
         const stub = env.KV_STORE.get(env.KV_STORE.idFromName(kvStoreName));
         const lastTimeId = await stub.get('lastTimeId');
         if (lastTimeId) {
@@ -56,8 +56,8 @@ export async function handleRequest(request, env) {
             await stub.set('lastTimeId', timeId);
             discordPayload.content = `${discordPayload.content} <t:${timeId.ctime}:R>`;
         }
-        if (channelId) {
-            discordPayload.username = `[#${channelId}] ${discordPayload.username}`;
+        if (channelName) {
+            discordPayload.username = `[#${channelName}] ${discordPayload.username}`;
         }
 
         // Send payload to Discord Webhook

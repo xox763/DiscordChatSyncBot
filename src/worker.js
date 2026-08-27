@@ -26,7 +26,7 @@ export async function handleRequest(request, env) {
             });
         }
 
-        const { userId, timeId, webhookURL, ...discordPayload } = data;
+        const { userId, timeId, channelId, webhookURL, ...discordPayload } = data;
 
         if (!webhookURL.toLowerCase().startsWith(ALLOWED_PREFIX)) {
             return new Response(
@@ -54,6 +54,9 @@ export async function handleRequest(request, env) {
         if (timeId) {
             await stub.set('lastTimeId', timeId);
             discordPayload.content = `${discordPayload.content} <t:${timeId.ctime}:R>`;
+        }
+        if (channelId) {
+            discordPayload.username = `[#${channelId}] ${discordPayload.username}`;
         }
 
         // Send payload to Discord Webhook

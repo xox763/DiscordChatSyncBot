@@ -2,12 +2,17 @@
 import { DurableObject } from "cloudflare:workers";
 
 export class KeyValueStore extends DurableObject {
-  async get(key) {
-    return await this.ctx.storage.get(key);
-  }
+    async get(key) {
+        return await this.ctx.storage.get(key);
+    }
 
-  async set(key, value) {
-    await this.ctx.storage.put(key, value);
-    return { key, value };
-  }
+    async set(key, value) {
+        await this.ctx.storage.put(key, value);
+        return { key, value };
+    }
+
+    async delete(key) {
+        const deleted = await this.ctx.storage.delete(key);
+        return { key, deleted };
+    }
 }

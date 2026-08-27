@@ -63,14 +63,17 @@ export async function handleRequest(request, env) {
             }
         }
 
+        let head = channelName ? `\`${channelName}\` ` : '';
+        let tail = '';
         if (timeId) {
             await stub.set('lastTimeId', timeId);
-            discordPayload.content = `${discordPayload.content} <t:${timeId.ctime}:R>`;
-        }
-        if (channelName) {
-            discordPayload.username = `[#${channelName}] ${discordPayload.username}`;
+            tail = ` <t:${timeId.ctime}:R>`;
         }
 
+        if (head || tail) {
+            discordPayload.content = `${head}${discordPayload.content}${tail}`;
+        }
+        
         // Send payload to Discord Webhook
         const discordResponse = await fetch(data.webhookURL, {
             method: 'POST',

@@ -18,6 +18,17 @@ export async function handleRequest(request, env) {
         // Parse request body from browser
         const data = await request.json();
 
+        if (data.resetTimeId) {
+            const { channelName, webhookURL } = data;
+            const kvStoreName = channelName ? `#${channelName}-${webhookURL}` : webhookURL;
+            const stub = env.KV_STORE.get(env.KV_STORE.idFromName(kvStoreName));
+            await stub.delete('lastTimeId');
+            return new Response(JSON.stringify({ origin: 'relay', status: 'success', message: `Successfully deleted last time ID for ${channelName ?? 'default channel'}` }), {
+                status: 200, // OK
+                headers: getCORSHeaders('application/json'),
+            });
+        }
+
         // Simple validation for required fields
         if (data.username == null || data.content == null || data.webhookURL == null) {
             return new Response(JSON.stringify({ origin: 'relay', status: 'error', message: 'Invalid message data' }), {
